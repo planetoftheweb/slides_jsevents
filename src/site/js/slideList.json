@@ -1,0 +1,31 @@
+[{
+    "filename": "00_01",
+    "title": "Hands-on React" }
+,{
+    "filename": "00_03",
+    "title": "Slides" }
+,{
+    "filename": "01_01",
+    "title": "Events" }
+,{
+    "filename": "01_02",
+    "title": "Classes or Hooks" }
+,{
+    "filename": "01_03",
+    "title": "Components with Hooks" }
+,{
+    "filename": "01_04",
+    "title": "Using Effects" }
+,{
+    "filename": "03_01",
+    "title": "Creating Projects" }
+,{
+    "filename": "03_02",
+    "title": "Customizing Styles" }
+,{
+    "filename": "demo",
+    "title": "Opinionated Reveal.js" }
+,{
+    "filename": "slides",
+    "title": "" }
+]

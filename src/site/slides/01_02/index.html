@@ -82,7 +82,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_02</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Classes or Hooks</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Properties and Methods</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_02&#">
@@ -151,90 +151,70 @@
           </aside>
         <main class="main col col-md-6 col-lg-8">
           <!-- .slide: data-state="layout-title" class="bg-dark"-->
-<h1 id="classes-or-hooks" tabindex="-1">Classes or Hooks</h1>
+<h1 id="properties-and-methods" tabindex="-1">Properties and Methods</h1>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>In React, you can reuse bits of code called components...using of two styles: classes and hooks. Let's take a look at the differences and why hooks are more dominant.</p>
+<p>When an event is triggered, the system passes along a lot of real useful information about the event that you can use.</p>
 <hr>
-<h1 id="components" tabindex="-1">Components</h1>
+<h1 id="event-properties" tabindex="-1">Event Properties</h1>
 <ul>
-<li>Reusable code</li>
-<li>Accept <code>props</code></li>
-<li>Return display</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/web/api/event">Event Interface</a></li>
+<li>Context Sensitive</li>
+<li>DOM Listen</li>
+<li>Many Events</li>
 </ul>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>Before we get into classes or hooks, lets define what a component is and does.</p>
-<p>Components are a way to create reusable code. Think of them like functions that are a bit more flexible.</p>
-<p>Components can accept any number of inputs called props</p>
-<p>and they return what will be displayed as part of your application.</p>
+<p>There is a basic set of properties that are available to all events and these are stored in the event interface.</p>
+<p>The information you get is context sensitive, so different events will generate different properties, but they will all share the same basic properties.</p>
+<p>You can ask elements to listen for events using the Document Object Model or DOM. An API that allows you to interact with the document.</p>
+<p>An element can listen for many events, even of the same type. So different code that listen for the same event, but do different things.</p>
+<p>You can click on this to go to the documentation for the event interface.</p>
 <hr>
-<h1 id="class-components" tabindex="-1">Class Components</h1>
+<h1 id="basic-events" tabindex="-1">Basic Events</h1>
 <ul>
-<li>Object syntax</li>
-<li>Still valid</li>
-<li>Harder to write</li>
+<li>Targeting: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">target</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">currentTarget</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">preventDefault</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp">timeStamp</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/type">type</a></li>
 </ul>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>React has been around for quite a while and until recently, its exclusively used the object syntax to create components.</p>
-<p>It's something that's fallen out of favor, but is still valid, but it's less familiar to modern developers.</p>
-<hr>
-<h1 id="class-component" tabindex="-1">Class Component</h1>
-<pre><code class="language-jsx">import React, { Component } from &quot;react&quot;;
-
-class Welcome extends React.Component {
-  constructor() {
-    super();
-  }
-  render() {
-    return &lt;h1&gt;Meet the StarGazers&lt;/h1&gt;;
-  }
-}
+<p>Let's go over some of the important information that all events share.</p>
+<p>There are a couple of properties related to the element that triggered the event. The target is the element that originally triggered the event. Events are designed to move up the DOM tree from the original element that triggered the event and through the container that have the element up to the body. This is called event bubbling.</p>
+<p>the current target is the element that is currently handling the event. As events bubble up the DOM, the current target can change.</p>
+<p>Sometimes, you really want to control how an event triggers, so there are some items that allow you to inspect and change what should happen when an event is triggered. So, for example if you want to do some validation, before a form is submitted, you might wish to prevent the default action of the form submission.</p>
+<p>Finally, the type property tells you what type of event was triggered.</p>
+<pre><code class="language-html">&lt;main class=&quot;container&quot; data-theme=&quot;light&quot;&gt;
+  &lt;h1&gt;JavaScript Events&lt;/h1&gt;
+  &lt;article id=&quot;buttons&quot;&gt;
+    &lt;button&gt;Aneirin&lt;/button&gt;
+    &lt;button&gt;Charmaine&lt;/button&gt;
+    &lt;button&gt;Emmyloo&lt;/button&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
 </code></pre>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
-<p>This is a basic class based components. Let's jump into our code.</p>
-<p>It might look familiar if you're used to writing Class based JavaScript.</p>
-<p>In order to use components, we import the React object and the component object from the React library.</p>
-<p>Next we start by declaring a Class. Class names are always capitalized.</p>
-<p>Next we use the class to extend the functionality of a React component.</p>
-<p>We then use a special function called a constructor. The job of the constructor is to initialize the instance of the class when it is used.</p>
-<p>Then we get into the render statement, where you output what you want React to show.</p>
-<p>That seems like a lot for a simple component and that's the way components worked for a long time.</p>
-<hr>
-<h1 id="passing-props" tabindex="-1">Passing Props</h1>
-<pre><code class="language-jsx">class Welcome extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return &lt;h1&gt;Meet the &lt;i&gt;{this.props.name}&lt;/i&gt;&lt;/h1&gt;
-  }
-}
+<pre><code class="language-js">document.querySelector(&quot;#buttons&quot;).addEventListener(&quot;click&quot;, function (e) {
+  console.log(`
+      target: ${e.target.tagName}
+      currentTarget: ${e.currentTarget.tagName}
+      defaultPrevented: ${e.defaultPrevented}
+      timeStamp: ${e.timeStamp}
+      type: ${e.type}
+    `);
+});
 </code></pre>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
-<p>A component that just prints out some HTML is pretty useles, so let's take a look at how we can make it accept a parameter, like you would a function.</p>
-<p>To do that, we can pass along props, or properties to the component, just like we would with a regular HTML tag.</p>
-<p>In our return statement, we can use the this keyword to target the props we receive in the constructor and then display our name.</p>
-<hr>
-<h1 id="hooks" tabindex="-1">Hooks</h1>
-<pre><code class="language-jsx">const Welcome = (props) =&gt; {
-  return (
-    &lt;h1&gt;Meet the &lt;i&gt;{props.name}&lt;/i&gt;&lt;/h1&gt;
-  )
-}
+<h1 id="the-full-event" tabindex="-1">The Full Event</h1>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MouseEvent</a></li>
+</ul>
+<p>Events will return different information dependin on the type. We can take a look at the click event and examine the object returned to take a look at this.</p>
+<pre><code class="language-js">console.log(e);
 </code></pre>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
-<p>Hooks allow you to use the function syntax you already know to create componets. Let's take a look at how you would use them to create this component. You'll see that it's a lot simpler.</p>
+<p>You can see that we get a lot more information about the position of the mouse relative to a bunch of different things, the button that was clicked and the keyboard modifiers that were pressed.</p>
 
         </main>
         <aside class="aside aside-supplemental col col-md-3 col-lg-2 d-none d-md-block">
@@ -243,22 +223,16 @@ class Welcome extends React.Component {
             <div class="">
                 <ol>
                     
-                    <li><a href="#classes-or-hooks">Classes or Hooks</a>
+                    <li><a href="#properties-and-methods">Properties and Methods</a>
             		</li>
 
-                    <li><a href="#components">Components</a>
+                    <li><a href="#event-properties">Event Properties</a>
             		</li>
 
-                    <li><a href="#class-components">Class Components</a>
+                    <li><a href="#basic-events">Basic Events</a>
             		</li>
 
-                    <li><a href="#class-component">Class Component</a>
-            		</li>
-
-                    <li><a href="#passing-props">Passing Props</a>
-            		</li>
-
-                    <li><a href="#hooks">Hooks</a>
+                    <li><a href="#the-full-event">The Full Event</a>
             		</li>
                 </ol>
             </div>

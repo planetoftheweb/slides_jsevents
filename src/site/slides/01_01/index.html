@@ -82,7 +82,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_02</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Classes or Hooks</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Properties and Methods</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_02&#">
@@ -171,59 +171,49 @@
 <hr>
 <h1 id="capturing-events" tabindex="-1">Capturing Events</h1>
 <ul>
-<li>Event Registration</li>
+<li>Event registration</li>
 <li>Atrribute handlers</li>
-<li>DOM Targeting</li>
-<li>Event Propagation</li>
+<li>DOM targeting</li>
+<li>Event propagation</li>
 </ul>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
 <p>If you want to take care of a task when something happens. You have to capture that event</p>
-<!-- VIDEO OVERLAY -->
 <p>That's done through a process called event registration, in other words telling the browser what to do when an event takes place, and there's several ways of doing that.</p>
 <p>You can use attribute handlers, sometimes considered bad practice, but pretty common with frameworks.</p>
 <p>DOM targeting is the more traditional method of doing things</p>
 <p>Event propagration makes it possible to check for multiple events within a single call.</p>
 <p>Let's give those a try.</p>
-<hr>
-<h2 id="atribute-handlers" tabindex="-1">Atribute Handlers</h2>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
+<h1 id="atribute-handlers" tabindex="-1">Atribute Handlers</h1>
 <p>The first way of doing this is by using adding attribute handlers like the <code>onclick</code> handler.</p>
 <p>Although they used to be considered a bad practice because they are hard to update, and are not reusable. They make sure sense when people break code into modules, so a lot of frameworks use this method.</p>
-<pre><code>onclick=&quot;alert('Clicked on Charmaine')&quot;
+<pre><code class="language-js">onclick=&quot;alert('Clicked on Charmaine')&quot;
 </code></pre>
-<hr>
 <h1 id="targeting-the-dom" tabindex="-1">Targeting the DOM</h1>
 <p>You can also check for events by targeting a specific element in your page.</p>
 <p>You first specify which element in the dome you want to get to, and then specify which event you want to track.</p>
-<pre><code>  &lt;button id=&quot;charmaine&quot;&gt;
+<pre><code class="language-html">  &lt;button id=&quot;charmaine&quot;&gt;
 </code></pre>
 <p>In your JavaScript file, you'll need to target that element.</p>
 <pre><code>document.querySelector('#charmaine')
 </code></pre>
 <p>Now you can add an onclick event handler directly on JavaScript.</p>
-<pre><code>document.querySelector('#charmaine')
-  .onclick = function () {
-    alert('Clicked on Charmaine!');
-  }
+<pre><code class="language-js">document.querySelector(&quot;#charmaine&quot;).onclick = function () {
+  alert(&quot;Clicked on Charmaine!&quot;);
+};
 </code></pre>
 <p>We used an anonymous function here, but you can also use a named function. There are lots of other types of event handlers like like mouseover, mouseout, and keypress.</p>
-<hr>
-<h2 id="adding-an-event-listener" tabindex="-1">Adding an Event Listener</h2>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
+<h1 id="adding-an-event-listener" tabindex="-1">Adding an Event Listener</h1>
 <p>There is a more convenient way to manage events that's by adding an event listener that can track what happens to an element.</p>
 <p>The notation is a bit different.</p>
-<pre><code>document.querySelector('#charmaine')
-  .addEventListener('click', function () {
-    alert('clicked on Charmaine');
-}, false);
-
-
+<pre><code class="language-js">document.querySelector(&quot;#charmaine&quot;).addEventListener(
+  &quot;click&quot;,
+  function () {
+    alert(&quot;clicked on Charmaine&quot;);
+  },
+  false
+);
 </code></pre>
 <p>The addeventlistener method takes three arguments, the type of event, the function to execute, and a boolean value that specifies whether the event should bubble up or not.</p>
 <p>Don't worry about event bubbling, we'll talk about that later. For now, just add false.</p>
@@ -245,7 +235,13 @@
                     <li><a href="#capturing-events">Capturing Events</a>
             		</li>
 
+                    <li><a href="#atribute-handlers">Atribute Handlers</a>
+            		</li>
+
                     <li><a href="#targeting-the-dom">Targeting the DOM</a>
+            		</li>
+
+                    <li><a href="#adding-an-event-listener">Adding an Event Listener</a>
             		</li>
                 </ol>
             </div>

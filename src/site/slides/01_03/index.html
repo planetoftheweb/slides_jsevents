@@ -96,7 +96,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_03</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Components with Hooks</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Event Propagation</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_03&#">
@@ -110,7 +110,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_04</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Using Effects</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Preventing Defaults</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_04&#">
@@ -151,24 +151,45 @@
           </aside>
         <main class="main col col-md-6 col-lg-8">
           <!-- .slide: data-state="layout-title" class="bg-dark"-->
-<h1 id="components-with-hooks" tabindex="-1">Components with Hooks</h1>
+<h1 id="event-propagation" tabindex="-1">Event Propagation</h1>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>Technically, just writing components at functions make a lot of sense, but in reality, that notation isn't what makes it a hook based component. Let's take a look at what does.</p>
+<p>Event propagation allows you to have a single event capture all of the events in a parent element, sometimes we need to control how that happens.</p>
 <hr>
-<h1 id="react-hooks" tabindex="-1">React Hooks</h1>
+<h1 id="event-propagation-1" tabindex="-1">Event Propagation</h1>
 <ul>
-<li>Hook into React</li>
-<li>Access to state</li>
-<li>Access to lifecycle</li>
+<li>Feature of <code>addEventListener()</code></li>
+<li>Targeting: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">target</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">currentTarget</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation">stopPropagation()</a></li>
 </ul>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>Hooks are special functions that allow you code to hook into React's objects.</p>
-<p>They give you access to things like state, which is how we store data in React. We'll look at that in a minute when we learn about the useState hook.</p>
-<p>They also give you access to lifecycle methods, which are methods called when certain events happen in your application.</p>
+<p>Propagation is a feature of the addEventListener method. It's super convenient to be able to capture any events happening inside elements and then do something about them.</p>
+<p>Remember that there are two targets that are triggered with events. The target and the current target. The target is the thing that caused the event and the current target changes as the event bubbles up the DOM.</p>
+<p>That's why there's a special method called stoppropagation that allows us to stop the events from bubbling. Let's take a look at an example.</p>
+<pre><code class="language-html">  &lt;main class=&quot;container&quot; data-theme=&quot;light&quot;&gt;
+    &lt;h1&gt;JavaScript Events&lt;/h1&gt;
+    &lt;article id=&quot;buttons&quot;&gt;
+      &lt;button&gt;Aneirin&lt;/button&gt;
+      &lt;button id=&quot;charmaine&quot;&gt;Charmaine&lt;/button&gt;
+      &lt;button&gt;Emmyloo&lt;/button&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+</code></pre>
+<p>document.querySelector(&quot;#buttons&quot;)<br>
+.addEventListener(&quot;click&quot;, function (e) {<br>
+this.style.backgroundColor = &quot;darkgrey&quot;<br>
+if(e.target.tagName==&quot;BUTTON&quot;) {<br>
+e.target.style.backgroundColor = &quot;green&quot;;<br>
+}<br>
+})</p>
+<p>document.querySelector(&quot;#charmaine&quot;)<br>
+.addEventListener(&quot;click&quot;, function (e) {<br>
+e.stopPropagation();<br>
+e.target.style.backgroundColor = &quot;green&quot;;<br>
+})</p>
 
         </main>
         <aside class="aside aside-supplemental col col-md-3 col-lg-2 d-none d-md-block">
@@ -177,10 +198,10 @@
             <div class="">
                 <ol>
                     
-                    <li><a href="#components-with-hooks">Components with Hooks</a>
+                    <li><a href="#event-propagation">Event Propagation</a>
             		</li>
 
-                    <li><a href="#react-hooks">React Hooks</a>
+                    <li><a href="#event-propagation-1">Event Propagation</a>
             		</li>
                 </ol>
             </div>

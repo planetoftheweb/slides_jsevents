@@ -96,7 +96,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_03</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Components with Hooks</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Event Propagation</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_03&#">
@@ -110,7 +110,7 @@
                       <i class="bi bi-file-text-fill me-2 lh-1" style="color: #8C6621;"></i>
                       <div class="d-flex flex-column lh-1">
                         <span class="fw-medium lh-1" style="color: #8C6621; font-size: .7em">01_04</span>
-                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Using Effects</span>
+                        <span class="fw-bold lh-1 text-white" style="font-family: Asap; font-size: 1.1em">Preventing Defaults</span>
                       </div>
                     </a>
                     <a class="flex-fill ms-3 text-end" style="color: #8C6621;" href="../../../?d=01_04&#">
@@ -151,29 +151,30 @@
           </aside>
         <main class="main col col-md-6 col-lg-8">
           <!-- .slide: data-state="layout-title" class="bg-dark"-->
-<h1 id="using-effects" tabindex="-1">Using Effects</h1>
+<h1 id="preventing-defaults" tabindex="-1">Preventing Defaults</h1>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>The second most popular hook in react is the useEffect hook. Let's take a look at what it does and why you need it.</p>
+<p>Some events have default behaviors that trigger place when the events happen and every once in a while, we need to be able to cancel those behaviors.</p>
 <hr>
-<h1 id="useeffect-hook" tabindex="-1">useEffect Hook</h1>
+<h1 id="preventing-defaults-1" tabindex="-1">Preventing Defaults</h1>
 <ul>
-<li>Side effects</li>
-<li>Outside scope</li>
-<li>Replaces lifecycles</li>
-<li>After render</li>
+<li>Link clicks</li>
+<li>Form submissions</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">preventDefault()</a></li>
+<li><a href="https://gist.github.com/planetoftheweb/ea85601e7d437e8f4f37d44c1149d40b">Finished Code</a></li>
 </ul>
 <blockquote>
 <blockquote></blockquote>
 </blockquote>
-<p>The useEffect hook is the second most popular hook in React.</p>
-<p>It allows you manage side effects. I'm not a fan of the term &quot;effect&quot; here, but it makes sense if you think of it like this.</p>
-<p>A side effect is anythihg that deals with something outside of the scope of the current component. Like when you take a medicine and sometimes they can have side effects. Things the medicine didn't intend to do to you.</p>
-<p>The way these used to be managed in old React was with different lifecycles methods. So you had a method called something like componentDidMount for when the component mounted and a method called componentDidUpdate for when the component updated.</p>
-<p>Basically think it as letting you do something after rendering. React guarantees that the DOM has been updated.</p>
-<p>But that's enough talk. Let's jump into codespaces and try out this hook.</p>
-<p>Most of your projects will use the useEffect hook and the useStateHook together to help manage state. We'll take a look at how you can use them together in the next video.</p>
+<p>So for example when we click on a link, the default behavior is to follow that link probably onto a website.</p>
+<p>Or when the user tries to submit a form, the default behavior is to take the form data and pass it to a form processor. You might want to stop the data from being passed to the form processor, so you can do your own validation.</p>
+<p>In order to control how an event reacts with default behavior, we use a method called prevent default. So, I'm going to show you how to do that.</p>
+<p>We've been using CodePen for the majority of the code so far, but preventing defaults on a preview environment like this doesn't always work. So I created a link to a finished HTML page, so you can see this working in action.</p>
+<pre><code class="language-js">document.getElementById(&quot;links&quot;).addEventListener(&quot;click&quot;, function (e) {
+  e.preventDefault();
+});
+</code></pre>
 
         </main>
         <aside class="aside aside-supplemental col col-md-3 col-lg-2 d-none d-md-block">
@@ -182,10 +183,10 @@
             <div class="">
                 <ol>
                     
-                    <li><a href="#using-effects">Using Effects</a>
+                    <li><a href="#preventing-defaults">Preventing Defaults</a>
             		</li>
 
-                    <li><a href="#useeffect-hook">useEffect Hook</a>
+                    <li><a href="#preventing-defaults-1">Preventing Defaults</a>
             		</li>
                 </ol>
             </div>
